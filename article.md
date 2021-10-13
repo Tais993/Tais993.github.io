@@ -7,18 +7,23 @@ Precisely said; variables in the JVM.
 ### The local variables array
 
 The local variable array contains all the local variables, method arguments and when it's an instance method, the current instance (this).
-to show an example, when we have the main method:
+The local variable array follows a certain order, mixing method arguments and method variables would result in odd bugs. So that's luckily not applicable.
+Let's say, we've 2 methods that take an int as argument, and return a string.
 ```java
 class Main {
-    public static void main(String... args) {
-        String test = "owh";
-        int yikes = 119521;
+    public String intToString(int i) {
+        return "Not I";
+    }
+    
+    public static String intToString(int i) {
+        return "Not I";
     }
 }
 ```
-
-<table>
+It's corresponding arrays will look like:
+<table style="display: inline">
     <thead>
+        <h4>Instance method:</h4>
         <tr>
             <th>Index</th>
             <th>Type</th>
@@ -29,20 +34,45 @@ class Main {
         <tr>
             <td>0</td>
             <td>Reference</td>
-            <td>String... args</td>
+            <td>this</td>
         </tr>
         <tr>
             <td>1</td>
-            <td>Reference</td>
-            <td>String test</td>
+            <td>int</td>
+            <td>int i</td>
         </tr>        
         <tr>
             <td>2</td>
-            <td>int</td>
-            <td>int Yikes</td>
+            <td>Reference</td>
+            <td>String</td>
         </tr>
     </tbody>
 </table>
+<table  style="display: inline">
+    <thead>
+        <h4>Static method:</h4>
+        <tr>
+            <th>Index</th>
+            <th>Type</th>
+            <th>Parameter</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>int</td>
+            <td>int i</td>
+        </tr>        
+        <tr>
+            <td>1</td>
+            <td>Reference</td>
+            <td>String</td>
+        </tr>
+    </tbody>
+</table>
+
+
+## The Stack
 
 ## The beginning: ifs
 
