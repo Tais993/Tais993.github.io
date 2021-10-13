@@ -16,13 +16,33 @@ class Main {
     }
 }
 ```
-We will have a local variable array looking like \
-| Index 	| Type      	| Parameter      	|
-|-------	|-----------	|----------------	|
-| 0     	| Reference 	| String... args 	|
-| 1     	| Reference 	| String test    	|
-| 2     	| int       	| int Yikes      	|
 
+<table>
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Type</th>
+            <th>Parameter</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>Reference</td>
+            <td>String... args</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Reference</td>
+            <td>String test</td>
+        </tr>        
+        <tr>
+            <td>2</td>
+            <td>int</td>
+            <td>int Yikes</td>
+        </tr>
+    </tbody>
+</table>
 
 ## The beginning: ifs
 
