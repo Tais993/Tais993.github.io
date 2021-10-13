@@ -1,4 +1,4 @@
-### The JVM
+## The JVM
 
 Before I can even start talking, it's important you understand a bit about how the JVM works.
 Precisely said; variables in the JVM.
@@ -21,6 +21,8 @@ class Main {
 }
 ```
 It's corresponding arrays will look like:
+
+[comment]: # (TODO: check accuracty)
 <table style="display: inline">
     <thead>
         <h4>Instance method:</h4>
@@ -71,8 +73,12 @@ It's corresponding arrays will look like:
     </tbody>
 </table>
 
+In the case of an instance method, the first item of an array is reserved to the current objects reference.
+After this, the methods arguments follow in order.  
 
-## The Stack
+### The Stack
+
+
 
 ## The beginning: ifs
 
