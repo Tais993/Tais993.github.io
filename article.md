@@ -16,7 +16,7 @@ class Main {
     }
 }
 ```
-We will have a local variable array looking like
+We will have a local variable array looking like \
 | Index 	| Type      	| Parameter      	|
 |-------	|-----------	|----------------	|
 | 0     	| Reference 	| String... args 	|
