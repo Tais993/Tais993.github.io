@@ -1,3 +1,8 @@
+
+
+# The following article is still in WIP (Work in progress)
+
+
 ## The JVM
 
 Before I can even start talking, it's important you understand a bit about how the JVM works.
@@ -74,9 +79,14 @@ It's corresponding arrays will look like:
 </table>
 
 In the case of an instance method, the first item of an array is reserved to the current objects reference.
-After this, the methods arguments follow in order.  
+After this, the methods arguments follow in order, following the methods variables in order.  
 
-### The Stack
+### The Operand Stack
+
+Imagine the local variable array as a fridge, you grab things out of it, and put things in it. \
+But the work get's done on the counter in the kitchen. And the stack plays role as this so-called counter. 
+
+The operand stack works by pushing and popping values. The JVM uses the stack as a workplace.
 
 
 
@@ -106,22 +116,39 @@ This generates the following bytecode.
        2: aload_0
        3: iconst_0
        4: aaload
-       5: invokevirtual #9                  // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       5: invokevirtual #9                  // Method java/lang/String.equals:(Ljava/lang/Object;)
        8: ifeq          19
       11: getstatic     #15                 // Field java/lang/System.out:Ljava/io/PrintStream;
       14: ldc           #21                 // String Testing
-      16: invokevirtual #23                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      16: invokevirtual #23                 // Method java/io/PrintStream.println:(Ljava/lang/String;)
       19: return
 ```
 
 So lets go over this together, the first line:\
-`       0: ldc           #7                  // String test` \
+`       0: ldc #7           // String test`\
 `ldc` pushes a constant from the constant pool.
 So in this scenario, it grabs the "test" string
 
 After this, you'll notice \
 `       2: aload_0` \
 `aload_0` loads the first variable onto the "stack"
+
+`       3: iconst_0` \
+`iconst_0` grabs the `0` constant.
+
+`       4: aaload` \
+`aaload` loads a reference from the aray onto the stack. (the only argument in this case, the String array named args)
+
+`       5: invokevirtual #9     // Method java/lang/String.equals:(Ljava/lang/Object;)`  
+`invokevirtual` this invokes a virtual method on a reference. (There's also `invokestatic`, `invokeinterface` and 2 more)
+
+`       8: ifeq 19`
+If the value is equal to 0 (false), go to the branchoffset (19 in this case).
+
+#### Branches
+
+We just reached a point where there's 2 roads, and we can only take 1. \
+The code within the if statement is on another branch
 
 
 Depending on the use-case, switches will shortly follow.
@@ -131,8 +158,7 @@ String test = "neat";
 if (test.equals("test")) {
     // code
 } else if (test.equals("neat")){
-    // code    
-}
+    // code
 ```
 
 
