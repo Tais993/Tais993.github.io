@@ -83,7 +83,7 @@ After this, the methods arguments follow in order, following the methods variabl
 
 ### The Operand Stack
 
-Imagine the local variable array as a fridge, you grab things out of it, and put things in it. \
+Imagine the local variable array as a fridge, you grab things out of it, and put things in it. <br />
 But the work get's done on the counter in the kitchen. And the stack plays role as this so-called counter. 
 
 The operand stack works by pushing and popping values. The JVM uses the stack as a workplace.
@@ -92,11 +92,12 @@ The operand stack works by pushing and popping values. The JVM uses the stack as
 
 ## The beginning: ifs
 
-Before we start talking about switches, lets start at one of the first things you get taught when you start programming. \
-If statements, combine them with variables, and you have: the fundamental of programming. \
+Before we start talking about switches, lets start at one of the first things you get taught when you start programming. <br />
+
+If statements, combine them with variables, and you have: the fundamental of programming. <br />
 Right after if statements, you learn about else and if else statements.
 
-So lets go a little more advanced into how the compiler handles if's \
+So lets go a little more advanced into how the compiler handles if's <br />
 Let's say, we have an if statement.
 
 ```java
@@ -124,19 +125,19 @@ This generates the following bytecode.
       19: return
 ```
 
-So lets go over this together, the first line:\
-`       0: ldc #7           // String test`\
+So lets go over this together, the first line: <br />
+`       0: ldc #7           // String test`<br />
 `ldc` pushes a constant from the constant pool.
 So in this scenario, it grabs the "test" string
 
-After this, you'll notice \
-`       2: aload_0` \
+After this, you'll notice <br />
+`       2: aload_0` <br />
 `aload_0` loads the first variable onto the "stack"
 
-`       3: iconst_0` \
+`       3: iconst_0` <br />
 `iconst_0` grabs the `0` constant.
 
-`       4: aaload` \
+`       4: aaload` <br />
 `aaload` loads a reference from the aray onto the stack. (the only argument in this case, the String array named args)
 
 `       5: invokevirtual #9     // Method java/lang/String.equals:(Ljava/lang/Object;)`  
@@ -147,7 +148,7 @@ If the value is equal to 0 (false), go to the branchoffset (19 in this case).
 
 #### Branches
 
-We just reached a point where there's 2 roads, and we can only take 1. \
+We just reached a point where there's 2 roads, and we can only take 1. <br />
 The code within the if statement is on another branch
 
 
@@ -163,8 +164,8 @@ if (test.equals("test")) {
 
 
 
-> Credits: \
-> https://www.artima.com/insidejvm/ed2/jvm.html \
-> https://medium.com/swlh/introduction-to-java-bytecode-you-didnt-know-you-needed-22654cc34ab8 \
-> https://en.wikipedia.org/wiki/List_of_Java_bytecode_instructions \
+> Credits: <br />
+> https://www.artima.com/insidejvm/ed2/jvm.html <br />
+> https://medium.com/swlh/introduction-to-java-bytecode-you-didnt-know-you-needed-22654cc34ab8 <br />
+> https://en.wikipedia.org/wiki/List_of_Java_bytecode_instructions <br />
 > https://godbolt.org/
