@@ -126,24 +126,24 @@ This generates the following bytecode.
 ```
 
 So lets go over this together, the first line: <br />
-`       0: ldc #7           // String test`<br />
+`0: ldc #7           // String test`<br />
 `ldc` pushes a constant from the constant pool.
 So in this scenario, it grabs the "test" string
 
 After this, you'll notice <br />
-`       2: aload_0` <br />
+`2: aload_0` <br />
 `aload_0` loads the first variable onto the "stack"
 
-`       3: iconst_0` <br />
+`3: iconst_0` <br />
 `iconst_0` grabs the `0` constant.
 
-`       4: aaload` <br />
+`4: aaload` <br />
 `aaload` loads a reference from the aray onto the stack. (the only argument in this case, the String array named args)
 
-`       5: invokevirtual #9     // Method java/lang/String.equals:(Ljava/lang/Object;)`  
+`5: invokevirtual #9     // Method java/lang/String.equals:(Ljava/lang/Object;)`  
 `invokevirtual` this invokes a virtual method on a reference. (There's also `invokestatic`, `invokeinterface` and 2 more)
 
-`       8: ifeq 19`
+`8: ifeq 19`
 If the value is equal to 0 (false), go to the branchoffset (19 in this case).
 
 #### Branches
