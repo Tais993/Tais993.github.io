@@ -1,3 +1,7 @@
+---
+title: Article
+menus: header
+---
 
 
 # The following article is still in WIP (Work in progress)
