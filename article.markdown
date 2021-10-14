@@ -1,6 +1,6 @@
 ---
 title: Article
-menus: menu
+menus: header
 ---
 
 
