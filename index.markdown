@@ -5,4 +5,7 @@
 layout: home
 ---
 
-# WIP
+# Yeet
+
+Test
+{% include simple-menu.html %}

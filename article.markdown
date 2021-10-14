@@ -97,6 +97,8 @@ Before we start talking about switches, lets start at one of the first things yo
 If statements, combine them with variables, and you have: the fundamental of programming. <br />
 Right after if statements, you learn about else and if else statements.
 
+### The compiler's beginning
+
 So lets go a little more advanced into how the compiler handles if's <br />
 Let's say, we have an if statement.
 
@@ -126,9 +128,9 @@ This generates the following bytecode.
 ```
 
 So lets go over this together, the first line: <br />
-`0: ldc #7           // String test`<br />
-`ldc` pushes a constant from the constant pool.
-So in this scenario, it grabs the "test" string
+`0: ldc             #7      // String test`<br />
+`ldc` pushes a constant from the constant pool. <br />
+So in this scenario, it grabs the "test" string.
 
 After this, you'll notice <br />
 `2: aload_0` <br />
@@ -138,19 +140,96 @@ After this, you'll notice <br />
 `iconst_0` grabs the `0` constant.
 
 `4: aaload` <br />
-`aaload` loads a reference from the aray onto the stack. (the only argument in this case, the String array named args)
+`aaload` loads a reference from the array onto the stack. (the only argument in this case, the String array named args)
 
-`5: invokevirtual #9     // Method java/lang/String.equals:(Ljava/lang/Object;)`  
-`invokevirtual` this invokes a virtual method on a reference. (There's also `invokestatic`, `invokeinterface` and 2 more)
+`5: invokevirtual   #9      // Method java/lang/String.equals:(Ljava/lang/Object;)`  
+`invokevirtual` this invokes a virtual method on a reference. (There's also `invokestatic`, `invokeinterface` and 2 more) <br />
+In this case, [String#equals(Object)](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String)) is the victim
 
-`8: ifeq 19`
-If the value is equal to 0 (false), go to the branchoffset (19 in this case).
+`8: ifeq 19` <br />
+`ifeq` If the value is equal to 0 (false), go to the branchoffset (19 in this case).
 
-#### Branches
+### Branches
 
 We just reached a point where there's 2 roads, and we can only take 1. <br />
-The code within the if statement is on another branch
+The code within the if statement is another "branch" <br />
+Either we skip to the instruction at `19` or we proceed running the code like nothing happened.
 
+To show everything, we will proceed running the code like nothing happens :p
+So well, the value given to `ifeq` is **not** `0`, so it proceeds running like nothing happened.
+
+To remind you, we're looking at
+```java
+System.out.println("Testing");
+```
+
+Proceeding:
+
+`11: getstatic      #15     // Field java/lang/System.out:Ljava/io/PrintStream;` <br />
+`getstatic` Gets a static field value of a class. <br />
+In this case, `System` is the class, `out` is the variable.
+
+`14: ldc            #21     // String Testing` <br />
+`ldc` Push a constant from the constant pool onto the stack <br />
+In this case, it pushes the String with the value of "Testing"
+
+
+`16: invokevirtual  #23     // Method java/io/PrintStream.println:(Ljava/lang/String;)` <br />
+`invokevirtual` We already went of this one, but still. <br />
+This invokes a virtual method on an instance. <br />
+In this case, [PrintStream#println(String)](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String))
+
+
+`19: return` <br />
+`return` returns void from a method.
+
+
+Now you understand the basis of this exact code.
+So lets go further into if statements again!
+
+### Bytecode: all if instructions
+
+There are plenty of if instructions, and there is always one that fits your needs.
+So lets go through them one by one.
+
+`if_acmpeq` If references are equal
+
+`if_acmpne` If references are **not** equal
+
+`if_icmpeq` If ints are equal
+
+`if_icmpge` If value1 is greater than or equal to value2
+
+`if_icmpgt` If value2 is greather than value2 
+
+`if_icmple` If value1 is less than or equal to value2
+
+`if_icmplt` If value1 is less than value2
+
+`if_icmpne` If ints are **not** equal
+
+`ifeq` If value is 0
+
+`ifge` If value is greater than or equal to 0
+
+`ifgt` If value is greater than 0
+
+`ifle` If value is less than or equal to 0
+
+`iflt` If value is less than 0
+
+`ifne` If value is **not** 0
+
+`ifnonnull` If value is **not** null
+
+`ifnull` If value is null
+
+\
+Damn, that's a lot of instructions, I didn't expect this many.
+There indeed always is one that fits your need.
+
+
+## Switches
 
 Depending on the use-case, switches will shortly follow.
 Basic code like
